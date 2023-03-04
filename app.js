@@ -18,7 +18,7 @@ sign_in_btn.addEventListener("click", () => {
 });
 // Verification
 function verify() {
-  if(password.value.length<6){
+  if(false && password.value.length<6){
     alert("Your password length must be superior of 6");
     return false;
 }

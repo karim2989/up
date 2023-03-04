@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Médecin - Gestion des patients</title>
+	<title>Cabinet Dr.Sliman Labiedh</title>
 	<link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
 </head>
@@ -15,6 +15,36 @@
 				<li><a href="#info">Information</a></li>
 				<li><a href="#testimonials">Témoignages</a></li>
 				<li><a href="#contact">Contact</a></li>
+
+				<?php
+					session_start();
+					if (!isset($_SESSION)) {
+						print("<button><a href='./sign.html'>Sign in/Sign up</a></button>");
+					}
+					else {
+
+						$ispat = false;
+						$issec = false;
+						$issuper = false;
+
+						print("<button><a href='./logout.php'>Log out</a></button>");
+
+						$conn = new mysqli('localhost', 'root', 'root', 'cabinet');
+						
+						$res = $conn->query("select id from patient where email='".$email."' and pwd='".hash("md5",$_SESSION["pwd"])."'");
+						$ispat = isset(mysqli_fetch_row($res)[0]);
+
+						$res = $conn->query("select id from secretaire where email='".$email."' and pwd='".hash("md5",$_SESSION["pwd"])."'");
+						$ispat = isset(mysqli_fetch_row($res)[0]);
+
+						$res = $conn->query("select id from superuser where email='".$email."' and pwd='".hash("md5",$_SESSION["pwd"])."'");
+						$ispat = isset(mysqli_fetch_row($res)[0]);
+
+
+						print($ispat.$issec.$issuper);
+					}
+				
+				?>
 			</ul>
 		</nav>
 	</header>
@@ -25,7 +55,6 @@
 			<p>Docteur Slimen Labiedh est un enseingnant dans une faculte et docteur specialisé psychothérapeute. Son cabinet ce trouve dans un immeuble dans le 3eme etage.</p>
             <br>
             <p>C'est un homme plutôt sérieux, travailleur et rigoureux dans son travail. Il est également connu pour être très attaché à son travail et ses patients.</p>
-			<button><a href="./sign.html">Sign in/Sign up</a></button>
 		</section>
 
 		<section id="info">
@@ -60,7 +89,7 @@
                   <button type="reset" class="btn btn-secondary mr-2">Annuler</button>
                   <button type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
-              </form>                          
+              </form>
 		</section>
 	</main>
 

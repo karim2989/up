@@ -14,7 +14,13 @@
         die("server error: " . $conn->connect_error);
     }
     if ($conn->query("Insert into personne (email,pwd,nom,prenom,naissance,address,tel,cin) values ('".$email."','".hash("md5",$pwd)."','".$name1."','".$name2."','".$bd."','".$adr."','".$tel."','".$cin."')")) {
-        print("success");
+        $res = $conn->query("select id from personne where email='".$email."' and pwd='".hash("md5",$pwd)."'");
+        $id = mysqli_fetch_row($res)[0];
+        session_start();
+        $_SESSION['email'] = $email;
+        $_SESSION['pwd'] = $pwd;
+        $_SESSION['id'] = $id;
+        header('Location: ../index.php');
     }
     else{
         die("error");
