@@ -50,18 +50,21 @@
 	
 		session_start();
     	$res =  $conn->query("select * from demandeconsultation d,personne p where d.patient = p.id");
-	    print("liste des demandes de consultations:<table><tr> <td>nom</td> <td>prenom</td> <td>date demande</td> <td>temps demande</td> <td> </td>  </tr>");
+	    print("liste des demandes de consultations:<table><tr> <td>nom</td> <td>prenom</td> <td>date demande</td> <td>temps demande</td> </tr>");
 	    for ($i=0; $i < $res->num_rows; $i++) {
 			$x = mysqli_fetch_array($res);
         echo "<tr> <td>".$x[7]."</td> <td>".$x[8]."</td> <td>".$x[1]."</td> <td>".$x[2]."</td> </tr>";
 	    }
 	    print("</table>");
-
-
-
-
-
+		
 		$conn->close();
-	?>
+		?>
+		<form action="acceptdemande.php" method="post">
+			<input type="text" name="name1" id="">
+			<input type="text" name="name2" id="">
+			<input type="date" name="date" id="">
+			<input type="time" name="temps" id="">
+			<input type="submit" value="">
+		</form>
 </body>
 </html>

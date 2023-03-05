@@ -4,7 +4,7 @@
 	<title>Page Secrétaire</title>
 </head>
 <body>
-	<h1>Bienvenue sur la page Secrétaire</h1>
+	<h1>Bienvenue sur la page medcine</h1>
 
 	<?php
 		// Vérifier si l'utilisateur est connecté en tant que superuser
