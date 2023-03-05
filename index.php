@@ -9,7 +9,7 @@
 </head>
 <body>
 	<header class="flexh">
-		<nav class="flexh">
+		<nav class="flexh" style="height=200px">
 			<ul class="flexh jleft">
 				<li><a href="#home">Accueil</a></li>
 				<li><a href="#info">Information</a></li>

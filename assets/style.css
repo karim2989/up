@@ -1,20 +1,21 @@
 .flexh{
     display: flex;
     flex-direction: row;
-    justify-items: center;
+    justify-content: space-between;
 }
+img{height: 300px;}
 .flexv{
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-content: space-between;
 }
 
 .jleft{
-    justify-content: start;
+    justify-self: left;
 }
 
 .jright{
-    justify-content: end;
+    justify-self: right;
 }
 
 body {
