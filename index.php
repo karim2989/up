@@ -18,7 +18,10 @@
 
 				<?php
 					session_start();
-					if (!isset($_SESSION)) {
+					ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+
+					//print_r($_SESSION);
+					if (!isset($_SESSION["id"])) {
 						print("<button><a href='./sign.html'>Sign in/Sign up</a></button>");
 					}
 					else {
@@ -27,21 +30,34 @@
 						$issec = false;
 						$issuper = false;
 
-						print("<button><a href='./logout.php'>Log out</a></button>");
+						print($_SESSION["id"]."<button><a href='./logout.php'>Log out</a></button>");
 
 						$conn = new mysqli('localhost', 'root', 'root', 'cabinet');
-						
-						$res = $conn->query("select id from patient where email='".$email."' and pwd='".hash("md5",$_SESSION["pwd"])."'");
-						$ispat = isset(mysqli_fetch_row($res)[0]);
+						if ($conn->connect_error) {
+							die("server error: " . $conn->connect_error);
+						}
 
-						$res = $conn->query("select id from secretaire where email='".$email."' and pwd='".hash("md5",$_SESSION["pwd"])."'");
-						$ispat = isset(mysqli_fetch_row($res)[0]);
+						$res = $conn->query("select * from patient p, personne e where p.id = e.id and e.email='".$_SESSION["email"]."' and e.pwd='".hash("md5",$_SESSION["pwd"])."'");
+						$ispat = $res->num_rows > 0;
 
-						$res = $conn->query("select id from superuser where email='".$email."' and pwd='".hash("md5",$_SESSION["pwd"])."'");
-						$ispat = isset(mysqli_fetch_row($res)[0]);
+						$res = $conn->query("select * from secretaire p, personne e where p.id = e.id and e.email='".$_SESSION["email"]."' and e.pwd='".hash("md5",$_SESSION["pwd"])."'");
+						$issec = $res->num_rows > 0;
+
+						$res = $conn->query("select * from superuser p, personne e where p.id = e.id and e.email='".$_SESSION["email"]."' and e.pwd='".hash("md5",$_SESSION["pwd"])."'");
+						$issuper = $res->num_rows > 0;
 
 
-						print($ispat.$issec.$issuper);
+						if($ispat){
+							print("<button><a href='./logout.php'>espace patient</a></button>");
+						}
+						if ($issec) {
+							print("<button><a href='./logout.php'>espace secritaire</a></button>");
+						}
+						if ($issuper) {
+							print("<button><a href='./logout.php'>espace medcin</a></button>");
+						}
+
+						echo($conn->error);
 					}
 				
 				?>
