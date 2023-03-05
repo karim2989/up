@@ -51,10 +51,10 @@
 							print("<button><a href='./logout.php'>espace patient</a></button>");
 						}
 						if ($issec) {
-							print("<button><a href='./logout.php'>espace secritaire</a></button>");
+							print("<button><a href='./secretaire.php'>espace secritaire</a></button>");
 						}
 						if ($issuper) {
-							print("<button><a href='./logout.php'>espace medcin</a></button>");
+							print("<button><a href='./superuser.php'>espace medcin</a></button>");
 						}
 
 						echo($conn->error);

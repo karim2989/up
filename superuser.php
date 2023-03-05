@@ -9,10 +9,7 @@
 	<?php
 		// Vérifier si l'utilisateur est connecté en tant que superuser
 		session_start();
-		if (!isset($_SESSION['superuser'])) {
-			header("Location: login.php");
-			exit();
-		}
+		
 
 		// Traiter les actions de création et de suppression de secrétaire
 		require_once('config.php');
