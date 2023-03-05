@@ -30,7 +30,7 @@
 						$issec = false;
 						$issuper = false;
 
-						print($_SESSION["id"]."<button><a href='./logout.php'>Log out</a></button>");
+						print("<button><a href='./logout.php'>Log out</a></button>");
 
 						$conn = new mysqli('localhost', 'root', 'root', 'cabinet');
 						if ($conn->connect_error) {

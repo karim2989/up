@@ -20,7 +20,8 @@
         $_SESSION['email'] = $email;
         $_SESSION['pwd'] = $pwd;
         $_SESSION['id'] = $id;
-        $conn->query("insert into patient '".$id."',''");
+        $conn->query("insert into patient  values ('".$id."','')");
+        print($conn->error);
         header('Location: ./index.php');
     }
     else{
