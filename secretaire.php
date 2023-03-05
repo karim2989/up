@@ -46,6 +46,21 @@
 		    echo "Erreur: " . $sql . "<br>" . $conn->error;
 		  }
 		}
+		
+	
+		session_start();
+    	$res =  $conn->query("select * from demandeconsultation d,personne p where d.patient = p.id");
+	    print("liste des demandes de consultations:<table><tr> <td>nom</td> <td>prenom</td> <td>date demande</td> <td>temps demande</td> <td> </td>  </tr>");
+	    for ($i=0; $i < $res->num_rows; $i++) {
+			$x = mysqli_fetch_array($res);
+        echo "<tr> <td>".$x[7]."</td> <td>".$x[8]."</td> <td>".$x[1]."</td> <td>".$x[2]."</td> </tr>";
+	    }
+	    print("</table>");
+
+
+
+
+
 		$conn->close();
 	?>
 </body>

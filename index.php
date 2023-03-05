@@ -48,7 +48,7 @@
 
 
 						if($ispat){
-							print("<button><a href='./logout.php'>espace patient</a></button>");
+							print("<button><a href='./espaceclient.php'>espace patient</a></button>");
 						}
 						if ($issec) {
 							print("<button><a href='./secretaire.php'>espace secritaire</a></button>");
