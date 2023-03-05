@@ -53,7 +53,13 @@ nav ul li a:hover {
     background-color: #444;
     border-radius: 10px;
 }
-
+main{
+    align-items: center;
+}
+#testimonials{
+    width: 400px;
+    justify-self: center;
+}
 /* Main */
 main {
     padding: 40px;

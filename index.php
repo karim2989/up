@@ -67,7 +67,7 @@
 		</nav>
 	</header>
 	
-	<main>
+	<main class="flexv">
 		<section class="flexh" id="home">
 			<img src="slimane.png" alt="">
 			<div class="flexv">
@@ -89,7 +89,16 @@
 			</ul>
 		</section>
 
-		<section id="testimonials">
+		<section id="testimonials" class="flexv">
+			<?php
+			$con = new mysqli('localhost', 'root', 'root', 'cabinet');
+			$res =  $con->query("select nom,prenom,texte from remarques r,personne e where r.id = e.id");
+			for ($i=0; $i < $res->num_rows; $i++) {
+				$x = mysqli_fetch_array($res);
+				echo "<h3>".$x[0]." ".$x[1]."</h3> <p>".$x[2]."</p> <br> ";
+			}
+			?>
+				</section>
 			
 		<section id="contact">
 			<h2>Contactez-nous</h2>
