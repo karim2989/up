@@ -8,14 +8,17 @@
     <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<ul>
+	<header class="flexh">
+		<nav class="flexh">
+			<ul class="flexh jleft">
 				<li><a href="#home">Accueil</a></li>
 				<li><a href="#info">Information</a></li>
 				<li><a href="#testimonials">Témoignages</a></li>
 				<li><a href="#contact">Contact</a></li>
+			</ul>
+			<div class="flexh jright">
 
+				
 				<?php
 					session_start();
 					ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
@@ -25,18 +28,18 @@
 						print("<button><a href='./sign.html'>Sign in/Sign up</a></button>");
 					}
 					else {
-
+						
 						$ispat = false;
 						$issec = false;
 						$issuper = false;
-
+						
 						print("<button><a href='./logout.php'>Log out</a></button>");
 
 						$conn = new mysqli('localhost', 'root', 'root', 'cabinet');
 						if ($conn->connect_error) {
 							die("server error: " . $conn->connect_error);
 						}
-
+						
 						$res = $conn->query("select * from patient p, personne e where p.id = e.id and e.email='".$_SESSION["email"]."' and e.pwd='".hash("md5",$_SESSION["pwd"])."'");
 						$ispat = $res->num_rows > 0;
 
@@ -45,8 +48,8 @@
 
 						$res = $conn->query("select * from superuser p, personne e where p.id = e.id and e.email='".$_SESSION["email"]."' and e.pwd='".hash("md5",$_SESSION["pwd"])."'");
 						$issuper = $res->num_rows > 0;
-
-
+						
+						
 						if($ispat){
 							print("<button><a href='./espaceclient.php'>espace patient</a></button>");
 						}
@@ -56,21 +59,23 @@
 						if ($issuper) {
 							print("<button><a href='./superuser.php'>espace medcin</a></button>");
 						}
-
+						
 						echo($conn->error);
-					}
-				
-				?>
-			</ul>
+					}		
+					?>
+	</div>
 		</nav>
 	</header>
-
+	
 	<main>
-		<section id="home">
-			<h1>Bienvenue sur le site du Dr. Labiedh</h1>
-			<p>Docteur Slimen Labiedh est un enseingnant dans une faculte et docteur specialisé psychothérapeute. Son cabinet ce trouve dans un immeuble dans le 3eme etage.</p>
-            <br>
-            <p>C'est un homme plutôt sérieux, travailleur et rigoureux dans son travail. Il est également connu pour être très attaché à son travail et ses patients.</p>
+		<section class="flexh" id="home">
+			<img src="slimane.png" alt="">
+			<div class="flexv">
+				<h1>Dr. Slimane labiedh</h1>
+				<p>Docteur specialisé psychothérapeute.</p>
+				<p>Professeur a l universite de Manouba.</p>
+				<br>
+			</div>
 		</section>
 
 		<section id="info">

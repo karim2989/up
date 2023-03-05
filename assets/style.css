@@ -1,27 +1,39 @@
-/* General */
+.flexh{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+}
+.flexv{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.jleft{
+    justify-content: start;
+}
+
+.jright{
+    justify-content: end;
+}
 
 body {
-    background-color: #222;
+    background-color: #b99976;
     color: #fff;
     font-family: Arial, sans-serif;
 }
-
 a {
     color: #fff;
     text-decoration: none;
 }
-
 a:hover {
     color: #ccc;
 }
-
-/* Header */
 header {
-    background-color: #333;
+    background-color: #b99976;
     padding: 20px;
     text-align: center;
 }
-
 nav ul {
     display: flex;
     justify-content: space-between;
@@ -56,10 +68,10 @@ h2 {
 }
 
 button {
-    background-color: rgb(48, 181, 181);
+    background-color: #e5d3b3;
     border: 2px solid black;
     border-radius: 10px 10px 10px 10px;
-    color: #fff;
+    color: #664229;
     cursor: pointer;
     font-size: 18px;
     padding: 10px 20px;
